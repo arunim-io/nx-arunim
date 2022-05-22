@@ -3,7 +3,7 @@ import { ensurePyprojectTomlDependency } from './ensurePyprojectTomlDependency';
 import { NormalisedSchema } from './schema';
 
 export function createPyprojectToml(tree: Tree, options: NormalisedSchema) {
-  if (options.skipPyprojectToml === false) {
+  if (options.packageManager === 'poetry') {
     const file = 'pyproject.toml';
     const content = `
     [tool.poetry]

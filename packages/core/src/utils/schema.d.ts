@@ -6,6 +6,6 @@ export interface NormalisedSchema extends CoreGeneratorSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
-  skipPyprojectToml?: boolean;
+  packageManager?: PackageManager;
   pythonVersion?: string;
 }

@@ -2,6 +2,6 @@ export interface CoreGeneratorSchema {
   name: string;
   tags?: string;
   directory?: string;
-  skipPyprojectToml?: boolean;
+  packageManager?: PackageManager;
   pythonVersion?: string;
 }

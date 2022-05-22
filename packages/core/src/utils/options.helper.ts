@@ -21,8 +21,6 @@ export function normaliseOptions(
     projectRoot,
     projectDirectory,
     parsedTags,
-    skipPyprojectToml: !!options.skipPyprojectToml,
     npmScope: nxJson.npmScope,
-    pythonVersion: options.pythonVersion,
   };
 }

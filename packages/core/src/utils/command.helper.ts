@@ -3,20 +3,19 @@ import { execSync } from 'child_process';
 
 /**
  * Executes python in a shell.
- * @param context
- * @param command
- * @param params
- * @param options
- * @returns success
+ * @param context The context of the executor.
+ * @param command The command to execute.
+ * @param params The parameters to pass to the command.
+ * @param options The options to pass to the command.
  */
 export function runPythonCommand(
   context: ExecutorContext,
-  command: 'build' | 'run' | 'test',
+  command: Command,
   params: string[],
   options: { cwd?: string; cmd?: string } = {},
 ) {
   // Take the parameters or set defaults
-  const cmd = options.cmd || 'poetry';
+  const cmd = options.cmd || 'python3';
   const cwd = options.cwd || process.cwd();
 
   // Create the command to execute

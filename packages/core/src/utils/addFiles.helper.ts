@@ -5,7 +5,7 @@ import { NormalisedSchema } from './schema';
  * Adds files to the tree
  * @param tree The tree to add files to
  * @param srcFolder Source folder of the project
- * @param options
+ * @param options The options to use
  */
 export function addFiles(tree: Tree, srcFolder: string, options: NormalisedSchema) {
   const projectNames = names(options.name);
