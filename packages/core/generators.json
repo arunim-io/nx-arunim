@@ -3,10 +3,15 @@
   "name": "core",
   "version": "0.0.1",
   "generators": {
-    "core": {
-      "factory": "./src/generators/core/generator",
-      "schema": "./src/generators/core/schema.json",
-      "description": "core generator"
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "application generator"
+    },
+    "library": {
+      "factory": "./src/generators/library/generator",
+      "schema": "./src/generators/library/schema.json",
+      "description": "library generator"
     }
   }
 }
