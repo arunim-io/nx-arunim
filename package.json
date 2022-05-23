@@ -5,10 +5,14 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "prepare": "husky install"
   },
   "private": true,
   "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@jscutlery/semver": "^2.23.4",
     "@nrwl/cli": "14.1.7",
     "@nrwl/devkit": "14.1.7",
     "@nrwl/eslint-plugin-nx": "14.1.7",
@@ -24,7 +28,9 @@
     "eslint": "~8.16.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "jest": "28.1.0",
+    "ngx-deploy-npm": "^3.1.9",
     "nx": "14.1.7",
     "prettier": "^2.6.2",
     "ts-jest": "28.0.2",

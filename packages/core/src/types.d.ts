@@ -1,2 +1,2 @@
-type Command = 'run' | 'build' | 'test';
-type PackageManager = 'pip' | 'poetry';
+type Command = 'run' | 'build' | 'test' | 'lint';
+type PackageManager = 'pip' | 'poetry' | 'pipenv';
