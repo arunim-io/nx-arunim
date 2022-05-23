@@ -14,6 +14,12 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "description": {
+      "type": "string",
+      "description": "",
+      "$default": "",
+      "x-prompt": "What description would you like to use?"
+    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
@@ -23,6 +29,41 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "packageManager": {
+      "type": "string",
+      "description": "The package manager to use",
+      "alias": "p",
+      "enum": ["pip", "poetry", "pipenv"],
+      "default": "pip"
+    },
+    "standaloneConfig": {
+      "type": "boolean",
+      "description": "Generate config files in project root instead of workspace root",
+      "default": false
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Skip installing dependencies",
+      "default": false
+    },
+    "testRunner": {
+      "type": "string",
+      "description": "The test runner to use",
+      "enum": ["unittest", "pytest"],
+      "default": "unittest"
+    },
+    "linter": {
+      "type": "string",
+      "description": "The linter to use",
+      "enum": ["flake8", "pylint"],
+      "default": "pylint"
+    },
+    "formatter": {
+      "type": "string",
+      "description": "The formatter to use",
+      "enum": ["autopep8", "black", "yapf"],
+      "default": "black"
     }
   },
   "required": ["name"]

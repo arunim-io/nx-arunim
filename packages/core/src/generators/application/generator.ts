@@ -1,52 +1,19 @@
-import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  getWorkspaceLayout,
-  names,
-  offsetFromRoot,
-  Tree,
-} from '@nrwl/devkit';
-import * as path from 'path';
+import { addProjectConfiguration, formatFiles, Tree } from '@nrwl/devkit';
+import { join, normalize } from 'path';
+import { addConfigFile } from '../../utils/addConfigFile.helper';
+import { addFiles } from '../../utils/addFiles.helper';
+import { normalizeOptions } from '../../utils/normalizeOptions.helper';
+import { toPosixPath } from '../../utils/path.helper';
 import { ApplicationGeneratorSchema } from './schema';
-
-interface NormalizedSchema extends ApplicationGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-}
-
-function normalizeOptions(tree: Tree, options: ApplicationGeneratorSchema): NormalizedSchema {
-  const name = names(options.name).fileName;
-  const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
-    : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
-  const parsedTags = options.tags ? options.tags.split(',').map((s) => s.trim()) : [];
-
-  return {
-    ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags,
-  };
-}
-
-function addFiles(tree: Tree, options: NormalizedSchema) {
-  const templateOptions = {
-    ...options,
-    ...names(options.name),
-    offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: '',
-  };
-  generateFiles(tree, path.join(__dirname, 'files'), options.projectRoot, templateOptions);
-}
 
 export default async function (tree: Tree, options: ApplicationGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+  const sourceRoot = normalizedOptions.projectRoot;
+  const targetOptions = {
+    outputPath: toPosixPath(join(normalize('dist'), sourceRoot)),
+    main: toPosixPath(join(sourceRoot, 'main.py')),
+  };
+
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',
@@ -54,10 +21,25 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
     targets: {
       build: {
         executor: '@nx-python/core:build',
+        options: targetOptions,
+      },
+      serve: {
+        executor: '@nx-python/core:serve',
+        options: {
+          main: targetOptions.main,
+        },
+      },
+      test: {
+        executor: '@nx-python/core:test',
+      },
+      lint: {
+        executor: '@nx-python/core:lint',
       },
     },
     tags: normalizedOptions.parsedTags,
   });
+
+  if (normalizedOptions.packageManager !== 'pip') addConfigFile(tree, normalizedOptions);
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
 }
