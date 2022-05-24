@@ -1,5 +1,4 @@
 import { generateFiles, names, offsetFromRoot, Tree } from '@nrwl/devkit';
-import { NormalizedSchema } from '../types';
 import path = require('path');
 
 export function addFiles(tree: Tree, options: NormalizedSchema) {

@@ -23,8 +23,7 @@ interface GeneratorSchema {
 interface ExecutorSchema {}
 
 /** Base normalized schema for executors */
-export interface NormalizedSchema extends GeneratorSchema {
-  npmScope?: boolean;
+interface NormalizedSchema extends GeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;

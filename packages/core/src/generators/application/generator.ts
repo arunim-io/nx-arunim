@@ -1,17 +1,17 @@
-import { addProjectConfiguration, formatFiles, Tree } from '@nrwl/devkit';
+import { addProjectConfiguration, formatFiles, normalizePath, Tree } from '@nrwl/devkit';
 import { join, normalize } from 'path';
-import { addConfigFile } from '../../utils/addConfigFile.helper';
-import { addFiles } from '../../utils/addFiles.helper';
+import { addConfigFile } from '../../utils/config.helper';
+import { createEnv } from '../../utils/env.helper';
+import { addFiles } from '../../utils/files.helper';
 import { normalizeOptions } from '../../utils/normalizeOptions.helper';
-import { toPosixPath } from '../../utils/path.helper';
 import { ApplicationGeneratorSchema } from './schema';
 
 export default async function (tree: Tree, options: ApplicationGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   const sourceRoot = normalizedOptions.projectRoot;
   const targetOptions = {
-    outputPath: toPosixPath(join(normalize('dist'), sourceRoot)),
-    main: toPosixPath(join(sourceRoot, 'main.py')),
+    outputPath: normalizePath(join(normalize('dist'), sourceRoot)),
+    main: normalizePath(join(sourceRoot, 'main.py')),
   };
 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -41,5 +41,6 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
 
   if (normalizedOptions.packageManager !== 'pip') addConfigFile(tree, normalizedOptions);
   addFiles(tree, normalizedOptions);
+  createEnv(tree, normalizedOptions);
   await formatFiles(tree);
 }

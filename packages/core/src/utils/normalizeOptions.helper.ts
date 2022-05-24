@@ -1,5 +1,4 @@
 import { getWorkspaceLayout, names, Tree } from '@nrwl/devkit';
-import { GeneratorSchema, NormalizedSchema } from '../types';
 
 export function normalizeOptions(tree: Tree, options: GeneratorSchema): NormalizedSchema {
   const name = names(options.name).fileName;
