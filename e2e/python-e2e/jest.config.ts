@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'core-e2e',
+  displayName: 'python-e2e',
   preset: '../../jest.preset.ts',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/e2e/core-e2e',
+  coverageDirectory: '../../coverage/e2e/python-e2e',
 };

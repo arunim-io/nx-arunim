@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'core',
+  displayName: 'python',
   preset: '../../jest.preset.ts',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/core',
+  coverageDirectory: '../../coverage/packages/python',
 };

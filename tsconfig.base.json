@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-python/core": ["packages/core/src/index.ts"]
+      "@nx-arunim/python": ["packages/python/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

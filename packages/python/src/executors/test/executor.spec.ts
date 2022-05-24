@@ -1,9 +1,9 @@
-import { LintExecutorSchema } from './schema';
+import { TestExecutorSchema } from './schema';
 import executor from './executor';
 
-const options: LintExecutorSchema = {};
+const options: TestExecutorSchema = {};
 
-describe('Lint Executor', () => {
+describe('Test Executor', () => {
   it('can run', async () => {
     const output = await executor(options);
     expect(output.success).toBe(true);

@@ -33,12 +33,8 @@ describe('core e2e', () => {
   describe('--directory', () => {
     it('should create src in the specified directory', async () => {
       const project = uniq('core');
-      await runNxCommandAsync(
-        `generate @nx-python/core:core ${project} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${project}/src/index.ts`)
-      ).not.toThrow();
+      await runNxCommandAsync(`generate @nx-python/core:core ${project} --directory subdir`);
+      expect(() => checkFilesExist(`libs/subdir/${project}/src/index.ts`)).not.toThrow();
     }, 120000);
   });
 
@@ -47,7 +43,7 @@ describe('core e2e', () => {
       const projectName = uniq('core');
       ensureNxProject('@nx-python/core', 'dist/packages/core');
       await runNxCommandAsync(
-        `generate @nx-python/core:core ${projectName} --tags e2etag,e2ePackage`
+        `generate @nx-python/core:core ${projectName} --tags e2etag,e2ePackage`,
       );
       const project = readJson(`libs/${projectName}/project.json`);
       expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
