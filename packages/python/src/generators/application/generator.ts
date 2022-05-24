@@ -40,7 +40,7 @@ export default async function (tree: Tree, options: ApplicationGeneratorSchema) 
   });
 
   if (normalizedOptions.packageManager !== 'pip') addConfigFile(tree, normalizedOptions);
-  addFiles(tree, normalizedOptions);
+  addFiles(tree, __dirname, normalizedOptions);
   createEnv(tree, normalizedOptions);
   await formatFiles(tree);
 }

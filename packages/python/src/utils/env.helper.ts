@@ -1,17 +1,23 @@
 import { Tree } from '@nrwl/devkit';
-import { execSync } from 'child_process';
+import { execaCommandSync } from 'execa';
 
 export function createEnv(tree: Tree, options: NormalizedSchema) {
   const cwd = !options.standaloneConfig ? tree.root : options.projectRoot;
   try {
     if (options.packageManager === 'pip') {
       console.info('Creating requirements.txt file');
-      tree.write(`${cwd}/requirements.txt`, '');
+      const content = `
+      pytest
+      `;
+      tree.write(`${cwd}/requirements.txt`, content);
       console.info('Creating virtualenv & installing dependencies');
-      execSync('python -m venv .venv && pip install -r requirements.txt', { cwd });
+      const output = execaCommandSync('python -m venv .venv && pip install -r requirements.txt', {
+        cwd,
+      }).stdout;
+      console.info(output);
     } else if (options.packageManager === 'poetry') {
       console.info('Creating virtualenv & installing dependencies');
-      execSync('poetry install', { cwd });
+      execaCommandSync('poetry install', { cwd }).stdout;
     }
   } catch (error) {
     console.error('Failed to execute command', error);

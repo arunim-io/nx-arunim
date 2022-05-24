@@ -16,19 +16,18 @@
     },
     "description": {
       "type": "string",
-      "description": "",
-      "$default": "",
-      "x-prompt": "What description would you like to use?"
-    },
-    "tags": {
-      "type": "string",
-      "description": "Add tags to the project (used for linting)",
-      "alias": "t"
+      "description": "What is the description of the application?",
+      "x-prompt": "What is the description of the application?"
     },
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Add tags to the project (used for linting)",
+      "alias": "t"
     },
     "packageManager": {
       "type": "string",
