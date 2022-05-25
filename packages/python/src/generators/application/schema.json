@@ -14,11 +14,6 @@
       },
       "x-prompt": "What name would you like to use?"
     },
-    "description": {
-      "type": "string",
-      "description": "What is the description of the application?",
-      "x-prompt": "What is the description of the application?"
-    },
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed",

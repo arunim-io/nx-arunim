@@ -2,12 +2,11 @@ type Command = 'run' | 'build' | 'test' | 'lint';
 type PackageManager = 'pip' | 'poetry' | 'pipenv';
 type TestingPackage = 'unittest' | 'pytest';
 type Linter = 'flake8' | 'pylint';
-type Formatter = 'autpep8' | 'black' | 'yapf';
+type Formatter = 'autopep8' | 'black' | 'yapf';
 
 /** Base schema for generators */
 interface GeneratorSchema {
   name: string;
-  description?: string;
   tags?: string;
   directory?: string;
   packageManager?: PackageManager;
