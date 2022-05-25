@@ -67,7 +67,7 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "conventional",
-        "postTargets": ["python:deploy"]
+        "postTargets": ["python:deploy", "python:github"]
       }
     }
   },
